@@ -1,15 +1,98 @@
 console.log("linked")
 
+//so you need an array of rgb values, for the boxes.
+//You also need to be able to 
+//		select one item from the array at random, 
+//		and set that to be the game winner value
+//You need whatever selector/eventListeners to be able to collect the info 
+//		from the clicked(selected) element.
 
-class  {
-	constructor()
+//maybe each box that is created is an instance of the randomBoxes class,
+//and they have a k:v pair that is a boolean
+//when clicked, that RandomBox.selected is made true
 
-	this.
-	this.
-}
+//////////////////////////////
+//	Typically speaking, format for a game will go like this
+		//classes(optional)
+		//objects(optional)
+		//THE GAME OBJECT
+		//Event listeners
 
 
 
-const game {
+class RandomBox {
+	//class RandomBox, produces an object, a box with a single random color.
+	//inside the GAME object, you'll initialze these boxes, and store them to an array
 
-}
+
+	constructor(arrayColorVariable) {
+
+
+	this.numSquares = 
+	this.color = arrayColorVariable,
+	this.userPickedColor = userPickColor
+	this.selected = false
+
+
+//game logic
+		const game = {
+
+
+
+//function for user to reset all box colors 
+			reset: function() {     
+		
+			}
+
+
+
+
+//let boxA = new RandomBox("blue")
+
+
+
+
+
+
+//function to make array of random colors from the random color generator
+
+
+
+
+
+//function to generate random colors
+			randColor: function(){
+				let r = Math.floor(Math.random() * 256);
+			
+				let g = Math.floor(Math.random() * 256);
+			
+				let b = Math.floor(Math.random() * 256);
+			return "rgb(" + r + ", " + g + ", " + b + ")";
+
+			}
+	}
+
+
+
+
+
+
+
+//listeners
+
+const reset = document.querySelector("#reset")
+reset.addEventListener('click', (game.reset()) )
+
+
+// 	=> {
+  
+//   squares.style.backgroundColor = "black"
+
+//   console.log(event.target)
+//   console.log(event.target.dataset);
+// })
+
+
+
+
+

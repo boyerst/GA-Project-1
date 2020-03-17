@@ -1,4 +1,32 @@
 body {
-	background-color: yellow;
-	font-size: 20px;
+	background-color: grey;
+	margin: 0;
+
+}
+
+h1 {
+	text-align: center;
+}
+
+#container {
+	padding: 10 10 10 10;
+	margin: 300px;
+	max-width 60px;
+
+}
+
+.button {
+	align-items: center;
+}
+
+
+
+.square {
+	width: 30%;
+	background: white;
+	padding-bottom: 30%;
+	float: left;
+	margin: 1%;
+	border-radius: 50%;
+
 }
