@@ -20,29 +20,43 @@ console.log("linked")
 
 
 
-class RandomBox {
+class RandomCircle {
 	//class RandomBox, produces an object, a box with a single random color.
 	//inside the GAME object, you'll initialze these boxes, and store them to an array
-
-
 	constructor(arrayColorVariable) {
 
-
-	this.numSquares = 
+	this.circles = 
 	this.color = arrayColorVariable,
 	this.userPickedColor = userPickColor
 	this.selected = false
 
-
+	}
+}
 //game logic
 		const game = {
+			
+			randomCircles: [],
+			
+
+			addCircle: function(color, selected = false){
+				const circle = new randomCircle (color)
+				let numCircles = 9
+				for(let i = 0; i < numCircles; i++){
+					const color = game.randColor()
+					randomCircle.push(circle)
+				}
+				console.log(game.circle)
+		},	
+
+
+
 
 
 
 //function for user to reset all box colors 
-			reset: function() {     
+			// reset: function() {     
 		
-			}
+			// }
 
 
 
@@ -55,7 +69,14 @@ class RandomBox {
 
 
 //function to make array of random colors from the random color generator
-
+			randColorArray(num){
+			  array = []
+			  for(var i = 0 ; i < num ; i++){
+			    array.push(randColor());
+			  }
+			  return array;
+			
+},
 
 
 
@@ -68,9 +89,11 @@ class RandomBox {
 			
 				let b = Math.floor(Math.random() * 256);
 			return "rgb(" + r + ", " + g + ", " + b + ")";
-
+			
 			}
-	}
+
+}
+
 
 
 
@@ -80,8 +103,8 @@ class RandomBox {
 
 //listeners
 
-const reset = document.querySelector("#reset")
-reset.addEventListener('click', (game.reset()) )
+// const reset = document.querySelector("#reset")
+// reset.addEventListener('click', (game.reset()) )
 
 
 // 	=> {
