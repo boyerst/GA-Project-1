@@ -41,7 +41,15 @@ const game = {
 			
 	circlesArray: [],
 	numCircles: 9,	
-	winConditionColor: "",
+	selectDisplayedRgb: "",
+	colorsArray: [],
+
+
+	//fill colorsArray 
+	//select random color to assign to selectDispalyedRgb
+	//use the colorsArray to fill the circl
+
+
 
 	fillCircle: function(color, selected){
 		//let circle = new RandomCircle(this.randColor)
@@ -54,35 +62,52 @@ const game = {
 
 
 		
-//selectWinCondition: function(){
-			//loop over randomCircles array and pick one, then print that rgb val to the screen
-		//}
-
-
-//function for user to reset all box colors 
-			// reset: function() {     
-		
-			// }
-
+	selectDisplayedRgb: function(){
+		let randomRgb = Math.floor(Math.random() * colorsArray.length)
+		console.log(randomRgb)
+		return randomRgb //??		
+		// colorsArray.push(randomRgb)
+			//loop over circlesArray and pick one, then print that rgb val to the screen
+	},
 
 
 
+	// reset: function() {     
+	// 	let rgbDisplay = document.querySelector(#message)
+	// 	selectedColor = selectDispalyedRgb()
+	// 	displayedRgb.textContent = selectedColor
+	// }
+	//within reset, will need to call on randColorArray for 
+				//single RGB value
+				//
+
+
+	//selectDisplayedRgb for single RGB color + 
 
 
 
-
-
-
-
+//make this a reset function too?
 //function to make array of random colors from the random color generator
-	randColorArray: function(num){
-		array = []
-		for(var i = 0 ; i < num ; i++){
-			array.push(randColor());
+	randColorArray: function(num){ //just num? not numCircles? array not populating
+		this.colorsArray = []
+		
+		for(let i = 0 ; i < num ; i++){//just num? not numCircles?
+			//console.log(this.colorsArray)
+			this.colorsArray.push(this.randColor()); 
 		}
-		return array;
-			
-},
+
+		ranNumMax = this.colorsArray.length - 1
+		console.log(ranNumMax)
+
+		this.selectDisplayedRgb = this.colorsArray[Math.floor(Math.random() * ranNumMax)]
+	
+		return this.colorsArray;
+	},
+
+
+
+
+
 
 
 
@@ -95,13 +120,16 @@ const game = {
 	
 		let b = Math.floor(Math.random() * 256);
 		return "rgb(" + r + ", " + g + ", " + b + ")";
-		
+		// game.randColorArray()
 	}
+
 
 }
 
 game.fillCircle()
 console.log(game.circlesArray)
+game.colorsArray
+game.selectDisplayedRgb
 
 
 
@@ -128,16 +156,19 @@ console.log(game.circlesArray)
 // const circleDiv = document.querySelectorAll("circle")
 // circleDiv.addEventListener('click', logCircleClick)
 
-const circlesContainer = document.querySelector("#container")
+// const circlesContainer = document.querySelector("#container")
+// circlesContainer.addEventListener('click', (event) => {
+// 	console.log("A circle was clicked")
+// 	console.log(event.target)
+// 	console.log(event.currentTarget)
+// })
+
+const circlesContainer = document.querySelector("div#container")
 circlesContainer.addEventListener('click', (event) => {
 	console.log("A circle was clicked")
-	console.log(event)
-	console.log("here is event.target")
 	console.log(event.target)
 	console.log(event.currentTarget)
 })
-
-
 
 
 
