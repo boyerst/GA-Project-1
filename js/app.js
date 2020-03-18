@@ -121,6 +121,39 @@ console.log(game.circlesArray)
 
 
 //make a click event listener that console logs the event target
+// const logCircleClick = () => {
+// 	const click = new Click()
+// 	console.log(click + ": there was a click on a circle");
+// }
+// const circleDiv = document.querySelectorAll("circle")
+// circleDiv.addEventListener('click', logCircleClick)
+
+const circlesContainer = document.querySelector("#container")
+circlesContainer.addEventListener('click', (event) => {
+	console.log("A circle was clicked")
+	console.log(event)
+	console.log("here is event.target")
+	console.log(event.target)
+	console.log(event.currentTarget)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
