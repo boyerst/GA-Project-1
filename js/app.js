@@ -20,37 +20,43 @@ console.log("linked")
 
 
 
-class RandomCircle {
+class MakeCircle {
 	//class RandomBox, produces an object, a box with a single random color.
 	//inside the GAME object, you'll initialze these boxes, and store them to an array
 	constructor(arrayColorVariable) {
 
-	this.circles = 
-	this.color = arrayColorVariable,
-	this.userPickedColor = userPickColor
-	this.selected = false
-
+	
+		this.color = arrayColorVariable,  //arrayColorVariable for value?
+		this.selected = false
+		// this.userPickedColor = userPickColor
+		// this.displayedRgb = 
+		// this.circle = circle
+		// this.clickedColor = 
 	}
 }
+
+
 //game logic
-		const game = {
+const game = {
 			
-			randomCircles: [],
-			
+	circlesArray: [],
+	numCircles: 9,	
+	winConditionColor: "",
 
-			addCircle: function(color, selected = false){
-				const circle = new randomCircle (color)
-				let numCircles = 9
-				for(let i = 0; i < numCircles; i++){
-					const color = game.randColor()
-					randomCircle.push(circle)
-				}
-				console.log(game.circle)
-		},	
-
-
+	fillCircle: function(color, selected){
+		//let circle = new RandomCircle(this.randColor)
+		
+		for(let i = 0; i <= this.numCircles; i++){
+			let circle = new MakeCircle(this.randColor())
+			this.circlesArray.push(circle)
+		}
+	},	
 
 
+		
+//selectWinCondition: function(){
+			//loop over randomCircles array and pick one, then print that rgb val to the screen
+		//}
 
 
 //function for user to reset all box colors 
@@ -61,7 +67,7 @@ class RandomCircle {
 
 
 
-//let boxA = new RandomBox("blue")
+
 
 
 
@@ -69,12 +75,12 @@ class RandomCircle {
 
 
 //function to make array of random colors from the random color generator
-			randColorArray(num){
-			  array = []
-			  for(var i = 0 ; i < num ; i++){
-			    array.push(randColor());
-			  }
-			  return array;
+	randColorArray: function(num){
+		array = []
+		for(var i = 0 ; i < num ; i++){
+			array.push(randColor());
+		}
+		return array;
 			
 },
 
@@ -82,18 +88,20 @@ class RandomCircle {
 
 
 //function to generate random colors
-			randColor: function(){
-				let r = Math.floor(Math.random() * 256);
-			
-				let g = Math.floor(Math.random() * 256);
-			
-				let b = Math.floor(Math.random() * 256);
-			return "rgb(" + r + ", " + g + ", " + b + ")";
-			
-			}
+	randColor: function(){
+		let r = Math.floor(Math.random() * 256);
+	
+		let g = Math.floor(Math.random() * 256);
+	
+		let b = Math.floor(Math.random() * 256);
+		return "rgb(" + r + ", " + g + ", " + b + ")";
+		
+	}
 
 }
 
+game.fillCircle()
+console.log(game.circlesArray)
 
 
 
@@ -106,16 +114,13 @@ class RandomCircle {
 // const reset = document.querySelector("#reset")
 // reset.addEventListener('click', (game.reset()) )
 
-
 // 	=> {
   
-//   squares.style.backgroundColor = "black"
-
-//   console.log(event.target)
-//   console.log(event.target.dataset);
-// })
 
 
+
+
+//make a click event listener that console logs the event target
 
 
 
