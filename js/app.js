@@ -46,7 +46,7 @@ const game = {
 	fillCircle: function(color, selected){
 		//let circle = new RandomCircle(this.randColor)
 		
-		for(let i = 0; i <= this.numCircles; i++){
+		for(let i = 1; i <= this.numCircles; i++){
 			let circle = new MakeCircle(this.randColor())
 			this.circlesArray.push(circle)
 		}
