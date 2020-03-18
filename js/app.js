@@ -86,14 +86,13 @@ const game = {
 
 
 
-//make this a reset function too?
+
 //function to make array of random colors from the random color generator
 	randColorArray: function(num){ //just num? not numCircles? array not populating
 		this.colorsArray = []
-		
 		for(let i = 0 ; i < num ; i++){//just num? not numCircles?
 			//console.log(this.colorsArray)
-			this.colorsArray.push(this.randColor()); 
+			this.colorsArray.push(this.randColor()); //this.colors...?
 		}
 
 		ranNumMax = this.colorsArray.length - 1
@@ -103,7 +102,6 @@ const game = {
 	
 		return this.colorsArray;
 	},
-
 
 
 
@@ -128,8 +126,6 @@ const game = {
 
 game.fillCircle()
 console.log(game.circlesArray)
-game.colorsArray
-game.selectDisplayedRgb
 
 
 
@@ -174,8 +170,17 @@ circlesContainer.addEventListener('click', (event) => {
 
 
 
+const resetButton = document.querySelector("#reset")
+resetButton.addEventListener('click', (event) => {
+  console.log("Reset Button was clicked!")
+  console.log(event.target)
+  console.log(event.currentTarget)
+})
 
 
+game.randColorArray //(have to call first w value?)
+game.colorsArray
+game.selectDispalyedRgb
 
 
 
