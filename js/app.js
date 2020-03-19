@@ -80,7 +80,9 @@ const game = {
 
 
 
-	reset: function() {     
+	reset: function() {   
+		game.randColorArray(9)
+		game.fillCircle()  
 		let newRgb = document.querySelector("h2>span")
 		console.log(newRgb)
 		displayedRgb = game.selectDisplayedRgb()
