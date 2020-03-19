@@ -46,7 +46,6 @@ const game = {
 
 
 	//fill colorsArray 
-	//select random color to assign to selectDispalyedRgb
 	//use the colorsArray to fill the circl
 
 
@@ -62,13 +61,13 @@ const game = {
 
 
 		
-	selectDisplayedRgb: function(){
-		let randomRgb = Math.floor(Math.random() * colorsArray.length)
-		console.log(randomRgb)
-		return randomRgb //??		
-		// colorsArray.push(randomRgb)
-			//loop over circlesArray and pick one, then print that rgb val to the screen
-	},
+	// selectDisplayedRgb: function(){
+	// 	let randomRgb = Math.floor(Math.random() * colorsArray.length)
+	// 	console.log(randomRgb)
+	// 	return randomRgb //??		
+	// 	// colorsArray.push(randomRgb)
+	// 		//loop over circlesArray and pick one, then print that rgb val to the screen
+	// },
 
 
 
@@ -126,6 +125,9 @@ const game = {
 
 game.fillCircle()
 console.log(game.circlesArray)
+game.randColorArray //(have to call first w value?)
+game.colorsArray
+game.selectDispalyedRgb
 
 
 
@@ -167,20 +169,31 @@ circlesContainer.addEventListener('click', (event) => {
 })
 
 
-
-
-
 const resetButton = document.querySelector("#reset")
 resetButton.addEventListener('click', (event) => {
-  console.log("Reset Button was clicked!")
-  console.log(event.target)
-  console.log(event.currentTarget)
+
+  	console.log("Reset Button was clicked!")
+  	console.log(event.target)
+  	console.log(event.currentTarget)
+})
+
+const onePlayerButton = document.querySelector("#one")
+onePlayerButton.addEventListener('click', (event) => {
+
+  	console.log("One Player Button was clicked!")
+  	console.log(event.target)
+  	console.log(event.currentTarget)
+})
+
+const twoPlayerButton = document.querySelector("#two")
+twoPlayerButton.addEventListener('click', (event) => {
+
+  	console.log("Two Player Button was clicked!")
+  	console.log(event.target)
+  	console.log(event.currentTarget)
 })
 
 
-game.randColorArray //(have to call first w value?)
-game.colorsArray
-game.selectDispalyedRgb
 
 
 
