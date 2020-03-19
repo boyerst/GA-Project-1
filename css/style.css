@@ -15,15 +15,21 @@ h1 {
 
 }
 
+#message {
+	display: inline-block;
+	width: 20%;
+}
+
 .navbar {
 	align-items: center;
+	background-color: white;
 }
 
 
 
 .circle {
 	width: 30%;
-	background: white;
+	background-color: white;
 	padding-bottom: 30%;
 	float: left;
 	margin: 1%;

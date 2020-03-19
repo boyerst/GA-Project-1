@@ -25,13 +25,14 @@ class MakeCircle {
 	//inside the GAME object, you'll initialze these boxes, and store them to an array
 	constructor(arrayColorVariable) {
 
-	
-		this.color = arrayColorVariable,  //arrayColorVariable for value?
+		
+		this.color = arrayColorVariable  //arrayColorVariable for value?
 		this.selected = false
 		// this.userPickedColor = userPickColor
 		// this.displayedRgb = 
 		// this.circle = circle
 		// this.clickedColor = 
+		console.log(arrayColorVariable)
 	}
 }
 
@@ -43,22 +44,50 @@ const game = {
 	numCircles: 9,	
 	selectDisplayedRgb: "",
 	colorsArray: [],
+	
 
 
 	//fill colorsArray 
 	//use the colorsArray to fill the circl
-
+	startGame: function(){
+		let messageDisplay = document.querySelector("#message");
+		messageDisplay.textContent = "Choose Player Mode";
+	},
 
 
 	fillCircle: function(color, selected){
 		//let circle = new RandomCircle(this.randColor)
+		// let colorsArray = this.color
+		// let colorss = circle.color[i]
+		// document.circle.style.backgroundColor = "black"
+		// let circleLocation = document.getElementsByClassName("circle")
+		// console.log(circleLocation)
+		// circleLocation.style.backgroundColor = "black"
+	// let colorsArray = randColorArray(numCircles)
 		
+		// let circles = document.getElementsByClassName("circle")
+		// for(let i = 0; i < circles.length; i++){
+		// 	circles[i].style.backgroundColor = this.circlesArray
+		// }
+		
+		// let foundThem = document.getElementsByClassName("circle")
+		// foundThem.style.background = "red";
+		// document.querySelectorAll("div.gameboard div.circle").style.backgroundColor = "black"
+		// document.getElementsByClassName("circle").style.backgroundColor = "black"
 		for(let i = 1; i <= this.numCircles; i++){
 			let circle = new MakeCircle(this.randColor())
 			this.circlesArray.push(circle)
-		}
-	},	
+			console.log(circle.color)
 
+		}
+		let circles = document.getElementsByClassName("circle")
+		for(let i = 0; i < circles.length; i++){
+			//console.log(this.colorsArray[i])
+			circles[i].style.backgroundColor = this.colorsArray[i] //this.colorsArray
+			//circles[i].style.backgroundColor = "rgb(7, 79, 57)"
+		}												//array empty b/c calling order?
+	},													//not allowing me to grab each circle by ID/query
+														//randColorArray() not pushing to colorsArray[]?
 
 		
 	// selectDisplayedRgb: function(){
@@ -71,37 +100,40 @@ const game = {
 
 
 
-	// reset: function() {     
-	// 	let rgbDisplay = document.querySelector(#message)
-	// 	selectedColor = selectDispalyedRgb()
-	// 	displayedRgb.textContent = selectedColor
-	// }
-	//within reset, will need to call on randColorArray for 
-				//single RGB value
-				//
+	reset: function() {     
+		// document.div.style.backgroundColor = "red";
+		// this.color.style.backgroundColor = "red"
+		// document.getElementById('container').style.background = "black"
+		// let rgbDisplay = document.querySelector(#message)
+		// selectedColor = selectDispalyedRgb()
+		// displayedRgb.textContent = selectedColor
+	},
+	// within reset, will need to call on randColorArray for 
+	// 			single RGB value
+				
 
 
-	//selectDisplayedRgb for single RGB color + 
+	
 
 
 
 
 //function to make array of random colors from the random color generator
-	randColorArray: function(num){ //just num? not numCircles? array not populating
+	randColorArray: function(numCircles){ //just num? not numCircles? array not populating
 		this.colorsArray = []
-		for(let i = 0 ; i < num ; i++){//just num? not numCircles?
-			//console.log(this.colorsArray)
-			this.colorsArray.push(this.randColor()); //this.colors...?
+		for(let i = 0 ; i < numCircles ; i++){//just num? not numCircles?
+			let randomCol = this.randColor();
+			
+			this.colorsArray.push(randomCol); //game.randColor()?this.randColor()?this.colors...?
 		}
 
-		ranNumMax = this.colorsArray.length - 1
-		console.log(ranNumMax)
+	// 	ranNumMax = this.colorsArray.length - 1
+	// 	console.log(ranNumMax)
 
-		this.selectDisplayedRgb = this.colorsArray[Math.floor(Math.random() * ranNumMax)]
+	// 	this.selectDisplayedRgb = this.colorsArray[Math.floor(Math.random() * ranNumMax)]
 	
-		return this.colorsArray;
+	// 	return this.colorsArray;
 	},
-
 
 
 
@@ -123,11 +155,16 @@ const game = {
 
 }
 
-game.fillCircle()
+
+console.log(this.colorsArray)
+
+
+// game.fillCircle()
+// game.reset()
 console.log(game.circlesArray)
 game.randColorArray //(have to call first w value?)
 game.colorsArray
-game.selectDispalyedRgb
+game.selectDisplayedRgb
 
 
 
@@ -141,7 +178,7 @@ game.selectDispalyedRgb
 // reset.addEventListener('click', (game.reset()) )
 
 // 	=> {
-  
+
 
 
 
@@ -161,6 +198,8 @@ game.selectDispalyedRgb
 // 	console.log(event.currentTarget)
 // })
 
+let messageDisplay = document.querySelector("#message");
+
 const circlesContainer = document.querySelector("div#container")
 circlesContainer.addEventListener('click', (event) => {
 	console.log("A circle was clicked")
@@ -171,15 +210,15 @@ circlesContainer.addEventListener('click', (event) => {
 
 const resetButton = document.querySelector("#reset")
 resetButton.addEventListener('click', (event) => {
-
-  	console.log("Reset Button was clicked!")
+  	// let circles = document.querySelector('div#container')		
+	// circlesContainer.style.background = "black"
   	console.log(event.target)
   	console.log(event.currentTarget)
 })
 
 const onePlayerButton = document.querySelector("#one")
 onePlayerButton.addEventListener('click', (event) => {
-
+	messageDisplay.textContent = "One Player Mode"
   	console.log("One Player Button was clicked!")
   	console.log(event.target)
   	console.log(event.currentTarget)
@@ -187,8 +226,7 @@ onePlayerButton.addEventListener('click', (event) => {
 
 const twoPlayerButton = document.querySelector("#two")
 twoPlayerButton.addEventListener('click', (event) => {
-
-  	console.log("Two Player Button was clicked!")
+	messageDisplay.textContent = "Two Player Mode"
   	console.log(event.target)
   	console.log(event.currentTarget)
 })
