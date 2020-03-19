@@ -28,6 +28,7 @@ class MakeCircle {
 		
 		this.color = arrayColorVariable  //arrayColorVariable for value?
 		this.selected = false
+
 		// this.userPickedColor = userPickColor
 		// this.displayedRgb = 
 		// this.circle = circle
@@ -149,8 +150,8 @@ game.randColorArray(9)
 game.fillCircle()
 game.selectDisplayedRgb()
 game.reset()
-// game.reset()
-console.log(game.circlesArray)
+
+
 game.randColorArray //(have to call first w value?)
 game.colorsArray
 game.selectDisplayedRgb
@@ -199,6 +200,7 @@ circlesContainer.addEventListener('click', (event) => {
 
 const resetButton = document.querySelector("#reset")
 resetButton.addEventListener('click', (event) => {
+	game.reset()
   	// let circles = document.querySelector('div#container')		
 	// circlesContainer.style.background = "black"
   	console.log(event.target)
