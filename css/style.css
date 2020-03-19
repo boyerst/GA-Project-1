@@ -8,6 +8,11 @@ h1 {
 	text-align: center;
 }
 
+h2 {
+	text-align: center;
+	text-transform: uppercase;
+}
+
 #container {
 	padding: 10 10 10 10;
 	margin: 300px;

@@ -56,29 +56,10 @@ const game = {
 
 
 	fillCircle: function(color, selected){
-		//let circle = new RandomCircle(this.randColor)
-		// let colorsArray = this.color
-		// let colorss = circle.color[i]
-		// document.circle.style.backgroundColor = "black"
-		// let circleLocation = document.getElementsByClassName("circle")
-		// console.log(circleLocation)
-		// circleLocation.style.backgroundColor = "black"
-	// let colorsArray = randColorArray(numCircles)
-		
-		// let circles = document.getElementsByClassName("circle")
-		// for(let i = 0; i < circles.length; i++){
-		// 	circles[i].style.backgroundColor = this.circlesArray
-		// }
-		
-		// let foundThem = document.getElementsByClassName("circle")
-		// foundThem.style.background = "red";
-		// document.querySelectorAll("div.gameboard div.circle").style.backgroundColor = "black"
-		// document.getElementsByClassName("circle").style.backgroundColor = "black"
 		for(let i = 1; i <= this.numCircles; i++){
 			let circle = new MakeCircle(this.randColor())
 			this.circlesArray.push(circle)
 			console.log(circle.color)
-
 		}
 		let circles = document.getElementsByClassName("circle")
 		for(let i = 0; i < circles.length; i++){
@@ -90,17 +71,23 @@ const game = {
 														//randColorArray() not pushing to colorsArray[]?
 
 		
-	// selectDisplayedRgb: function(){
-	// 	let randomRgb = Math.floor(Math.random() * colorsArray.length)
-	// 	console.log(randomRgb)
-	// 	return randomRgb //??		
-	// 	// colorsArray.push(randomRgb)
-	// 		//loop over circlesArray and pick one, then print that rgb val to the screen
-	// },
+	selectDisplayedRgb: function(){
+		let randomRgb = Math.floor(Math.random() * this.colorsArray.length)
+		return this.colorsArray[randomRgb]
+		console.log(randomRgb)	
+	// 	// colorsArray.push(randomRgb)?
+	},
 
 
 
 	reset: function() {     
+		let newRgb = document.querySelector("h2>span")
+		console.log(newRgb)
+		displayedRgb = game.selectDisplayedRgb()
+		newRgb.textContent = displayedRgb
+
+
+
 		// document.div.style.backgroundColor = "red";
 		// this.color.style.backgroundColor = "red"
 		// document.getElementById('container').style.background = "black"
@@ -149,17 +136,17 @@ const game = {
 	
 		let b = Math.floor(Math.random() * 256);
 		return "rgb(" + r + ", " + g + ", " + b + ")";
-		// game.randColorArray()
+		
 	}
-
-
 }
 
 
-console.log(this.colorsArray)
 
 
-// game.fillCircle()
+game.randColorArray(9)
+game.fillCircle()
+game.selectDisplayedRgb()
+game.reset()
 // game.reset()
 console.log(game.circlesArray)
 game.randColorArray //(have to call first w value?)
