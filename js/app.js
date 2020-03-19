@@ -1,6 +1,6 @@
 console.log("linked")
 
-//so you need an array of rgb values, for the boxes.
+
 //You also need to be able to 
 //		select one item from the array at random, 
 //		and set that to be the game winner value
@@ -10,14 +10,6 @@ console.log("linked")
 //maybe each box that is created is an instance of the randomBoxes class,
 //and they have a k:v pair that is a boolean
 //when clicked, that RandomBox.selected is made true
-
-//////////////////////////////
-//	Typically speaking, format for a game will go like this
-		//classes(optional)
-		//objects(optional)
-		//THE GAME OBJECT
-		//Event listeners
-
 
 
 class MakeCircle {
@@ -33,7 +25,7 @@ class MakeCircle {
 		// this.displayedRgb = 
 		// this.circle = circle
 		// this.clickedColor = 
-		console.log(arrayColorVariable)
+		// console.log(arrayColorVariable)
 	}
 }
 
@@ -48,8 +40,6 @@ const game = {
 	
 
 
-	//fill colorsArray 
-	//use the colorsArray to fill the circl
 	startGame: function(){
 		let messageDisplay = document.querySelector("#message");
 		messageDisplay.textContent = "Choose Player Mode";
@@ -64,22 +54,22 @@ const game = {
 		}
 		let circles = document.getElementsByClassName("circle")
 		for(let i = 0; i < circles.length; i++){
-			//console.log(this.colorsArray[i])
-			circles[i].style.backgroundColor = this.colorsArray[i] //this.colorsArray
-			//circles[i].style.backgroundColor = "rgb(7, 79, 57)"
+			circles[i].style.backgroundColor = this.colorsArray[i] 
+			
 		}												//array empty b/c calling order?
 	},													//not allowing me to grab each circle by ID/query
-														//randColorArray() not pushing to colorsArray[]?
-
+														
 		
 	selectDisplayedRgb: function(){
 		let randomRgb = Math.floor(Math.random() * this.colorsArray.length)
 		return this.colorsArray[randomRgb]
 		console.log(randomRgb)	
-	// 	// colorsArray.push(randomRgb)?
 	},
 
+	// compareSelection: function() {
+	// 	if displayedRgb ===
 
+	// },
 
 	reset: function() {   
 		game.randColorArray(9)
@@ -126,11 +116,6 @@ const game = {
 	},
 
 
-
-
-
-
-
 //function to generate random colors
 	randColor: function(){
 		let r = Math.floor(Math.random() * 256);
@@ -145,7 +130,7 @@ const game = {
 
 
 
-
+game.startGame()
 game.randColorArray(9)
 game.fillCircle()
 game.selectDisplayedRgb()
