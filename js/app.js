@@ -1,26 +1,10 @@
-console.log("linked")
-
-
-//You also need to be able to 
-//		select one item from the array at random, 
-//		and set that to be the game winner value
-//You need whatever selector/eventListeners to be able to collect the info 
-//		from the clicked(selected) element.
-
-//maybe each box that is created is an instance of the randomBoxes class,
-//and they have a k:v pair that is a boolean
-//when clicked, that RandomBox.selected is made true
-
 
 class MakeCircle {
 	//class RandomBox, produces an object, a box with a single random color.
 	//inside the GAME object, you'll initialze these boxes, and store them to an array
 	constructor(arrayColorVariable) {
-
-		
 		this.color = arrayColorVariable  //arrayColorVariable for value?
 		this.selected = false
-
 		// this.userPickedColor = userPickColor
 		// this.displayedRgb = 
 		// this.circle = circle
@@ -29,8 +13,6 @@ class MakeCircle {
 	}
 }
 
-
-//game logic
 const game = {
 			
 	circlesArray: [],
@@ -71,36 +53,19 @@ const game = {
 
 
 	compareSelection: function(selectedCircle) {   //selected here? true false
-		//need to call function...
 		let anchorRgb = document.getElementById("displayedRGB").innerText
-		console.log(anchorRgb.toLowerCase())
 		const winningColor = anchorRgb.toLowerCase()
-		console.log(winningColor)
-
 		if(selectedCircle === winningColor){
 				messageDisplay.textContent = "You have a match!"
-				console.log("YOU GOT IT!")
+				console.log("You have a match!")
 				// game.reset()
 			}else{
 				messageDisplay.textContent = "Not a match!"
-				console.log("You suck, eat farts chump")
-		
+				console.log("Not a match!")
+
 		}
 
 	},
-	//use on.click
-	// compareSelection: function(selectedCircle) {
-	// 	let gameBoardColors = document.getElementById("1").style.backgroundColor//.style.backgroundColor
-	// 	console.log(gameBoardColors)
-	// 	let gameBoardColors = document.getElementById('container').querySelectorAll("div")
-	// 	console.log(gameBoardColors)
-
-	// 	let gameBoardColors = document.getElementById('container').getElementsByClassName('circle').style.backgroundColor
-	// 	console.log(gameBoardColors)
-	// 	let gameBoardColors = document.getElementById('container').querySelectorAll("div")
-	// 	console.log(gameBoardColors)
-
-	//},
 
 	reset: function() {   
 		game.randColorArray(9)
@@ -112,24 +77,6 @@ const game = {
 		console.log(displayedRgb)
 	},
 
-
-		// document.div.style.backgroundColor = "red";
-		// this.color.style.backgroundColor = "red"
-		// document.getElementById('container').style.background = "black"
-		// let rgbDisplay = document.querySelector(#message)
-		// selectedColor = selectDispalyedRgb()
-		// displayedRgb.textContent = selectedColor
-	
-	// within reset, will need to call on randColorArray for 
-	// 			single RGB value
-				
-
-
-	
-
-
-
-
 //function to make array of random colors from the random color generator
 	randColorArray: function(numCircles){ //just num? not numCircles? array not populating
 		this.colorsArray = []
@@ -137,6 +84,7 @@ const game = {
 			let randomCol = this.randColor();
 			this.colorsArray.push(randomCol); //game.randColor()?this.randColor()?this.colors...?
 		}
+	},
 		//DONT NEED...for now
 	// 	ranNumMax = this.colorsArray.length - 1
 	// 	console.log(ranNumMax)
@@ -144,10 +92,7 @@ const game = {
 	// 	this.selectDisplayedRgb = this.colorsArray[Math.floor(Math.random() * ranNumMax)]
 	
 	// 	return this.colorsArray;
-	},
 
-
-//function to generate random colors
 	randColor: function(){
 		let r = Math.floor(Math.random() * 256);
 	
@@ -212,15 +157,8 @@ console.log(circlesContainer)
 let selectedCircle = "you clicked a circle"
 for(let i = 0; i < circlesContainer.length; i ++){
 	circlesContainer[i].addEventListener('click', (event) => {
-		//game.compareSelection() ///???
-		console.log(selectedCircle)
-		//console.log(event.target.style.backgroundColor)
 		let pickMeAWinner = event.target.style.backgroundColor
-		console.log(pickMeAWinner)
 		game.compareSelection(pickMeAWinner)
-		//console.log(event.target.id)
-		//let winningColor = event.target.style.backgroundColor
-
 	})
 }
 
