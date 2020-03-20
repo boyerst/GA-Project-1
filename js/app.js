@@ -57,20 +57,22 @@ const game = {
 		let anchorRgb = document.getElementById("displayedRGB").innerText
 		const winningColor = anchorRgb.toLowerCase()
 		if(selectedCircle === winningColor){
-				messageDisplay.textContent = "You have a match! Click New Colors to Play Again"
-				console.log("You have a match!")
+				messageDisplay.textContent = "You have a match!"
 				this.playerScore = this.playerScore + 1
 				const section = document.querySelector('#scoreBoard')
 				section.innerHTML = `Player Score: ${this.playerScore}`
 				console.log(`${this.playerScore}`)
-				// game.reset()
+					if(this.playerScore < 2){
+						game.reset()						
+					}else{
+							messageDisplay.textContent = "You won!"
+						}
 			}else{
-				messageDisplay.textContent = "Not a match!"
-				console.log("Not a match!")
-
+				messageDisplay.textContent = "Not a match! Click New Colors to Try Again"
 		}
-
 	},
+
+
 
 	reset: function() {   
 		game.randColorArray(9)
