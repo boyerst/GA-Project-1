@@ -38,6 +38,7 @@ const game = {
 	selectDisplayedRgb: "",
 	colorsArray: [],
 	
+	
 
 
 	startGame: function(){
@@ -55,7 +56,8 @@ const game = {
 		let circles = document.getElementsByClassName("circle")
 		for(let i = 0; i < circles.length; i++){
 			circles[i].style.backgroundColor = this.colorsArray[i] 
-			
+			console.log(circles[i].style.backgroundColor)
+
 		}												//array empty b/c calling order?
 	},													//not allowing me to grab each circle by ID/query
 														
@@ -66,10 +68,39 @@ const game = {
 		console.log(randomRgb)	
 	},
 
-	// compareSelection: function() {
-	// 	if displayedRgb ===
 
-	// },
+
+	compareSelection: function(selectedCircle) {   //selected here? true false
+		//need to call function...
+		let anchorRgb = document.getElementById("displayedRGB").innerText
+		console.log(anchorRgb.toLowerCase())
+		const winningColor = anchorRgb.toLowerCase()
+		console.log(winningColor)
+
+		if(selectedCircle === winningColor){
+				messageDisplay.textContent = "You have a match!"
+				console.log("YOU GOT IT!")
+				// game.reset()
+			}else{
+				messageDisplay.textContent = "Not a match!"
+				console.log("You suck, eat farts chump")
+		
+		}
+
+	},
+	//use on.click
+	// compareSelection: function(selectedCircle) {
+	// 	let gameBoardColors = document.getElementById("1").style.backgroundColor//.style.backgroundColor
+	// 	console.log(gameBoardColors)
+	// 	let gameBoardColors = document.getElementById('container').querySelectorAll("div")
+	// 	console.log(gameBoardColors)
+
+	// 	let gameBoardColors = document.getElementById('container').getElementsByClassName('circle').style.backgroundColor
+	// 	console.log(gameBoardColors)
+	// 	let gameBoardColors = document.getElementById('container').querySelectorAll("div")
+	// 	console.log(gameBoardColors)
+
+	//},
 
 	reset: function() {   
 		game.randColorArray(9)
@@ -78,7 +109,8 @@ const game = {
 		console.log(newRgb)
 		displayedRgb = game.selectDisplayedRgb()
 		newRgb.textContent = displayedRgb
-
+		console.log(displayedRgb)
+	},
 
 
 		// document.div.style.backgroundColor = "red";
@@ -87,7 +119,7 @@ const game = {
 		// let rgbDisplay = document.querySelector(#message)
 		// selectedColor = selectDispalyedRgb()
 		// displayedRgb.textContent = selectedColor
-	},
+	
 	// within reset, will need to call on randColorArray for 
 	// 			single RGB value
 				
@@ -103,10 +135,9 @@ const game = {
 		this.colorsArray = []
 		for(let i = 0 ; i < numCircles ; i++){//just num? not numCircles?
 			let randomCol = this.randColor();
-			
 			this.colorsArray.push(randomCol); //game.randColor()?this.randColor()?this.colors...?
 		}
-
+		//DONT NEED...for now
 	// 	ranNumMax = this.colorsArray.length - 1
 	// 	console.log(ranNumMax)
 
@@ -175,12 +206,38 @@ game.selectDisplayedRgb
 
 let messageDisplay = document.querySelector("#message");
 
-const circlesContainer = document.querySelector("div#container")
-circlesContainer.addEventListener('click', (event) => {
-	console.log("A circle was clicked")
-	console.log(event.target)
-	console.log(event.currentTarget)
-})
+
+const circlesContainer = document.querySelectorAll("div.circle")
+console.log(circlesContainer)
+let selectedCircle = "you clicked a circle"
+for(let i = 0; i < circlesContainer.length; i ++){
+	circlesContainer[i].addEventListener('click', (event) => {
+		//game.compareSelection() ///???
+		console.log(selectedCircle)
+		//console.log(event.target.style.backgroundColor)
+		let pickMeAWinner = event.target.style.backgroundColor
+		console.log(pickMeAWinner)
+		game.compareSelection(pickMeAWinner)
+		//console.log(event.target.id)
+		//let winningColor = event.target.style.backgroundColor
+
+	})
+}
+
+
+//whenever you get your click to log the rgb of the background color
+//maybe set that to a variable and pass that as the argument of the function
+//compareSelection(selectCircleRGBVal)
+
+
+//this was in the loop and printed the background colors
+// console.log(circlesContainer[i].style[0])
+// circlesContainer.addEventListener('click', (event) => {
+// 	console.log("A circle was clicked")
+	
+	// console.log("THIS IS THE CURRENTTARGET\N", event.currentTarget)
+
+// })
 
 
 const resetButton = document.querySelector("#reset")
