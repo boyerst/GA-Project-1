@@ -19,6 +19,7 @@ const game = {
 	numCircles: 9,	
 	selectDisplayedRgb: "",
 	colorsArray: [],
+	playerScore: 0,
 	
 	
 
@@ -56,8 +57,12 @@ const game = {
 		let anchorRgb = document.getElementById("displayedRGB").innerText
 		const winningColor = anchorRgb.toLowerCase()
 		if(selectedCircle === winningColor){
-				messageDisplay.textContent = "You have a match!"
+				messageDisplay.textContent = "You have a match! Click New Colors to Play Again"
 				console.log("You have a match!")
+				this.playerScore = this.playerScore + 1
+				const section = document.querySelector('#scoreBoard')
+				section.innerHTML = `Player Score: ${this.playerScore}`
+				console.log(`${this.playerScore}`)
 				// game.reset()
 			}else{
 				messageDisplay.textContent = "Not a match!"
@@ -78,11 +83,11 @@ const game = {
 	},
 
 //function to make array of random colors from the random color generator
-	randColorArray: function(num){ //just num? not numCircles? array not populating
+	randColorArray: function(num){ 
 		this.colorsArray = []
-		for(let i = 0 ; i < num ; i++){//just num? not numCircles?
+		for(let i = 0 ; i < num ; i++){
 			let randomCol = this.randColor();
-			this.colorsArray.push(randomCol); //game.randColor()?this.randColor()?this.colors...?
+			this.colorsArray.push(randomCol); 
 		}
 	},
 		//DONT NEED...for now
@@ -159,6 +164,7 @@ for(let i = 0; i < circlesContainer.length; i ++){
 	circlesContainer[i].addEventListener('click', (event) => {
 		let pickMeAWinner = event.target.style.backgroundColor
 		game.compareSelection(pickMeAWinner)
+		console.log(event.target)
 	})
 }
 
