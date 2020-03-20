@@ -40,8 +40,8 @@ const game = {
 			circles[i].style.backgroundColor = this.colorsArray[i] 
 			console.log(circles[i].style.backgroundColor)
 
-		}												//array empty b/c calling order?
-	},													//not allowing me to grab each circle by ID/query
+		}												
+	},													
 														
 		
 	selectDisplayedRgb: function(){
@@ -52,7 +52,7 @@ const game = {
 
 
 
-	compareSelection: function(selectedCircle) {   //selected here? true false
+	compareSelection: function(selectedCircle) {   
 		let anchorRgb = document.getElementById("displayedRGB").innerText
 		const winningColor = anchorRgb.toLowerCase()
 		if(selectedCircle === winningColor){
@@ -78,9 +78,9 @@ const game = {
 	},
 
 //function to make array of random colors from the random color generator
-	randColorArray: function(numCircles){ //just num? not numCircles? array not populating
+	randColorArray: function(num){ //just num? not numCircles? array not populating
 		this.colorsArray = []
-		for(let i = 0 ; i < numCircles ; i++){//just num? not numCircles?
+		for(let i = 0 ; i < num ; i++){//just num? not numCircles?
 			let randomCol = this.randColor();
 			this.colorsArray.push(randomCol); //game.randColor()?this.randColor()?this.colors...?
 		}
