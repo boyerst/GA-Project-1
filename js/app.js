@@ -13,6 +13,29 @@ class MakeCircle {
 	}
 }
 
+class Player{
+	constructor(num){
+		this.playerNum = num
+		this.score = 0
+	}
+}
+
+
+// const newDude = new Player(1)
+// const twoDude = new Player(2)
+// console.log(newDude)
+// console.log(twoDude)
+//this 
+// switchActivePlayer: function(){
+// 	if(this.activePlayer === this.players[0]){
+// 		this.activePlayer = this.players[1]
+// 	} else {
+// 		this.activePlayer = this.players[0]
+// 	}
+// }
+
+// this.switchActivePlayer()
+
 const game = {
 			
 	circlesArray: [],
@@ -20,7 +43,34 @@ const game = {
 	selectDisplayedRgb: "",
 	colorsArray: [],
 	playerScore: 0,
+	multiplayer: false,
+	playersArr: [],
+	activePlayer: null,
 	
+	
+	createPlayer: function() {
+		// //this goes into a player creation function inside the game
+		const newDude = new Player(1)
+		const twoDude = new Player(2)
+		// //these lines are also inside that same func
+		this.playersArr.push(newDude)
+		this.playersArr.push(twoDude)
+		//this function will assign the first item of the playersArr as the active player
+		// const newDude = new Player(1)
+		// const twoDude = new Player(2)
+		console.log(newDude)
+		console.log(twoDude)
+	},
+
+	switchActivePlayer: function() {
+		if(this.activePlayer === this.players[0]){
+			this.activePlayer = this.players[1]
+		} else {
+			this.activePlayer = this.players[0]
+		}
+	},
+
+	// this.switchActivePlayer()
 	
 
 
@@ -34,14 +84,11 @@ const game = {
 		for(let i = 1; i <= this.numCircles; i++){
 			let circle = new MakeCircle(this.randColor())
 			this.circlesArray.push(circle)
-			console.log(circle.color)
 		}
 		let circles = document.getElementsByClassName("circle")
 		for(let i = 0; i < circles.length; i++){
 			circles[i].style.backgroundColor = this.colorsArray[i] 
-			console.log(circles[i].style.backgroundColor)
-
-		}												
+		}											
 	},													
 														
 		
@@ -57,31 +104,32 @@ const game = {
 		let anchorRgb = document.getElementById("displayedRGB").innerText
 		const winningColor = anchorRgb.toLowerCase()
 		if(selectedCircle === winningColor){
-				messageDisplay.textContent = "You have a match!"
+				messageDisplay.textContent = "You have a match! Take another shot..."
 				this.playerScore = this.playerScore + 1
 				const section = document.querySelector('#scoreBoard')
 				section.innerHTML = `Player Score: ${this.playerScore}`
 				console.log(`${this.playerScore}`)
-					if(this.playerScore < 2){
+					if(this.playerScore < 3){
 						game.reset()						
 					}else{
-							messageDisplay.textContent = "You won!"
+						messageDisplay.textContent = "You won!"
 						}
 			}else{
 				messageDisplay.textContent = "Not a match! Click New Colors to Try Again"
+				// let losingColor = document.querySelectorAll("div.gameboard")
+				// console.log(losingColor)
+				// selectedCircle.style.backgroundColor = "black"
 		}
 	},
-
 
 
 	reset: function() {   
 		game.randColorArray(9)
 		game.fillCircle()  
 		let newRgb = document.querySelector("h2>span")
-		console.log(newRgb)
 		displayedRgb = game.selectDisplayedRgb()
 		newRgb.textContent = displayedRgb
-		console.log(displayedRgb)
+
 	},
 
 //function to make array of random colors from the random color generator
@@ -160,13 +208,11 @@ let messageDisplay = document.querySelector("#message");
 
 
 const circlesContainer = document.querySelectorAll("div.circle")
-console.log(circlesContainer)
 let selectedCircle = "you clicked a circle"
 for(let i = 0; i < circlesContainer.length; i ++){
 	circlesContainer[i].addEventListener('click', (event) => {
 		let pickMeAWinner = event.target.style.backgroundColor
 		game.compareSelection(pickMeAWinner)
-		console.log(event.target)
 	})
 }
 
@@ -189,16 +235,17 @@ for(let i = 0; i < circlesContainer.length; i ++){
 const resetButton = document.querySelector("#reset")
 resetButton.addEventListener('click', (event) => {
 	game.reset()
+	messageDisplay.textContent = null
   	// let circles = document.querySelector('div#container')		
 	// circlesContainer.style.background = "black"
-  	console.log(event.target)
-  	console.log(event.currentTarget)
+  	// console.log(event.target)
+  	// console.log(event.currentTarget)
 })
 
 const onePlayerButton = document.querySelector("#one")
 onePlayerButton.addEventListener('click', (event) => {
-	messageDisplay.textContent = "One Player Mode"
-  	console.log("One Player Button was clicked!")
+	messageDisplay.textContent = "One Player Mode: Match 3-in-a-row to Win!"
+	console.log("One Player Button was clicked!")
   	console.log(event.target)
   	console.log(event.currentTarget)
 })
