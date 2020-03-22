@@ -18,16 +18,19 @@ h2 {
 
 #container {
 	padding: 10 10 10 10;
-	margin: 300px;
+	margin: 50px;
 	max-width 60px;
 
 }
 
 #message {
 	display: inline-block;
-	width: 60%;
+	width: 40%;
 	color: white;
 	text-align: center;
+}
+#status {
+	color: white;
 }
 
 #reset {

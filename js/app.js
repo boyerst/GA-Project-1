@@ -1,17 +1,18 @@
 
 class MakeCircle {
-	//class RandomBox, produces an object, a box with a single random color.
-	//inside the GAME object, you'll initialze these boxes, and store them to an array
 	constructor(arrayColorVariable) {
-		this.color = arrayColorVariable  //arrayColorVariable for value?
+		this.color = arrayColorVariable  
 		this.selected = false
-		// this.userPickedColor = userPickColor
-		// this.displayedRgb = 
-		// this.circle = circle
-		// this.clickedColor = 
-		// console.log(arrayColorVariable)
 	}
 }
+
+class Player {
+	constructor(num){
+		this.playerNum = num
+		this.score = 0   
+	}						
+}								
+
 
 const game = {
 			
@@ -20,9 +21,43 @@ const game = {
 	selectDisplayedRgb: "",
 	colorsArray: [],
 	playerScore: 0,
+	multiplayer: false,
+	playersArr: [],
+	activePlayer: null,
 	
 	
+	onePlayerInit: function() {
+		const player1 = new Player("one")
+		this.playersArr.push(player1)
+		this.activePlayer = this.playersArr[0]							
+	},
 
+	twoPlayerInit: function() {
+		const player1 = new Player("one")
+		this.playersArr.push(player1)
+		const player2 = new Player("two")
+		this.playersArr.push(player2)
+		this.activePlayer = this.playersArr[0]
+	},	
+
+	switchActivePlayer: function() {
+		console.log("SWITCHING ACTIVE PLAYER")
+		console.log(game.playersArr)
+		console.log(game.activePlayer)
+		if(this.playersArr.length >= 2){
+			if(this.activePlayer === this.playersArr[0]){
+				this.activePlayer = this.playersArr[1]
+				messageDisplay.textContent = "Player 2's Guess"
+				console.log("player 1 turn")
+			} else {
+				this.activePlayer = this.playersArr[0]
+				messageDisplay.textContent = "Player 1's Guess"
+				console.log("player 2 turn")
+			}
+		} else {
+			this.activePlayer = this.playersArr[0]
+		}
+	},
 
 	startGame: function(){
 		let messageDisplay = document.querySelector("#message");
@@ -34,13 +69,10 @@ const game = {
 		for(let i = 1; i <= this.numCircles; i++){
 			let circle = new MakeCircle(this.randColor())
 			this.circlesArray.push(circle)
-			// console.log(circle.color)
 		}
 		let circles = document.getElementsByClassName("circle")
 		for(let i = 0; i < circles.length; i++){
 			circles[i].style.backgroundColor = this.colorsArray[i] 
-			// console.log(circles[i].style.backgroundColor)
-
 		}												
 	},													
 														
@@ -51,24 +83,43 @@ const game = {
 		console.log(randomRgb)	
 	},
 
-
+	displayScores: function(){
+		if(game.playersArr.length >= 2){
+			const p1score = document.getElementById("playerOneScore")
+			console.log(p1score)
+			p1score.innerHTML = `Player 1 Score: ${game.playersArr[0].score}`          
+			const p2score = document.getElementById("playerTwoScore")				
+			console.log(p2score)													
+			p2score.innerHTML = `Player 2 Score: ${game.playersArr[1].score}`
+		}else{
+			const p1score = document.getElementById("playerOneScore")
+			console.log(p1score)
+			p1score.innerHTML = `Player 1 Score: ${game.playersArr[0].score}`
+		}
+	},
 
 	compareSelection: function(selectedCircle) {   
 		let anchorRgb = document.getElementById("displayedRGB").innerText
 		const winningColor = anchorRgb.toLowerCase()
+		console.log(selectedCircle)
+		const statusMessage = document.getElementById("status")
 		if(selectedCircle === winningColor){
-				messageDisplay.textContent = "You have a match!"
-				this.playerScore = this.playerScore + 1
-				const section = document.querySelector('#scoreBoard')
-				section.innerHTML = `Player Score: ${this.playerScore}`
-				console.log(`${this.playerScore}`)
-					if(this.playerScore < 2){
-						// game.reset()						
-					}else{
-							messageDisplay.textContent = "You won!"
-						}
+				statusMessage.textContent = "You have a match!"
+				this.activePlayer.score = this.activePlayer.score + 1
 			}else{
-				messageDisplay.textContent = "Not a match! Click New Colors to Try Again"
+				statusMessage.textContent = "Not a match!"
+		}
+		game.displayScores()
+		game.checkWin()
+	},
+
+
+	checkWin: function() {
+		if(this.activePlayer.score <3){
+			game.switchActivePlayer()
+		}else{
+			let messageDisplay = document.querySelector("#message");
+			messageDisplay.textContent = "You won!"
 		}
 	},
 
@@ -78,13 +129,10 @@ const game = {
 		game.randColorArray(9)
 		game.fillCircle()  
 		let newRgb = document.querySelector("h2>span")
-		console.log(newRgb)
 		displayedRgb = game.selectDisplayedRgb()
 		newRgb.textContent = displayedRgb
-		// console.log(displayedRgb)
 	},
 
-//function to make array of random colors from the random color generator
 	randColorArray: function(num){ 
 		this.colorsArray = []
 		for(let i = 0 ; i < num ; i++){
@@ -92,13 +140,7 @@ const game = {
 			this.colorsArray.push(randomCol); 
 		}
 	},
-		//DONT NEED...for now
-	// 	ranNumMax = this.colorsArray.length - 1
-	// 	console.log(ranNumMax)
-
-	// 	this.selectDisplayedRgb = this.colorsArray[Math.floor(Math.random() * ranNumMax)]
 	
-	// 	return this.colorsArray;
 
 	randColor: function(){
 		let r = Math.floor(Math.random() * 256);
@@ -107,7 +149,6 @@ const game = {
 	
 		let b = Math.floor(Math.random() * 256);
 		return "rgb(" + r + ", " + g + ", " + b + ")";
-		
 	}
 }
 
@@ -120,7 +161,7 @@ game.selectDisplayedRgb()
 game.reset()
 
 
-game.randColorArray //(have to call first w value?)
+game.randColorArray 
 game.colorsArray
 game.selectDisplayedRgb
 
@@ -130,84 +171,35 @@ game.selectDisplayedRgb
 
 
 
-//listeners
 
-// const reset = document.querySelector("#reset")
-// reset.addEventListener('click', (game.reset()) )
-
-// 	=> {
-
-
-
-
-
-//make a click event listener that console logs the event target
-// const logCircleClick = () => {
-// 	const click = new Click()
-// 	console.log(click + ": there was a click on a circle");
-// }
-// const circleDiv = document.querySelectorAll("circle")
-// circleDiv.addEventListener('click', logCircleClick)
-
-// const circlesContainer = document.querySelector("#container")
-// circlesContainer.addEventListener('click', (event) => {
-// 	console.log("A circle was clicked")
-// 	console.log(event.target)
-// 	console.log(event.currentTarget)
-// })
 
 let messageDisplay = document.querySelector("#message");
+const circlesContainer = document.querySelector("#container")
 
-
-const circlesContainer = document.querySelectorAll("div.circle")
-// console.log(circlesContainer)
-let selectedCircle = "you clicked a circle"
-for(let i = 0; i < circlesContainer.length; i ++){
-	circlesContainer[i].addEventListener('click', (event) => {
-		let pickMeAWinner = event.target.style.backgroundColor
-		game.compareSelection(pickMeAWinner)
-		console.log(event.target)
-	})
-}
-
-
-//whenever you get your click to log the rgb of the background color
-//maybe set that to a variable and pass that as the argument of the function
-//compareSelection(selectCircleRGBVal)
-
-
-//this was in the loop and printed the background colors
-// console.log(circlesContainer[i].style[0])
-// circlesContainer.addEventListener('click', (event) => {
-// 	console.log("A circle was clicked")
-	
-	// console.log("THIS IS THE CURRENTTARGET\N", event.currentTarget)
-
-// })
-
+const selectedCircle = "you clicked a circle"
+circlesContainer.addEventListener('click', (event) => {
+	let pickMeAWinner = event.target.style.backgroundColor
+	game.compareSelection(pickMeAWinner)
+	console.log(event.target)
+	game.reset()
+})
 
 const resetButton = document.querySelector("#reset")
 resetButton.addEventListener('click', (event) => {
 	game.reset()
-  	// let circles = document.querySelector('div#container')		
-	// circlesContainer.style.background = "black"
-  	console.log(event.target)
-  	console.log(event.currentTarget)
 })
 
 const onePlayerButton = document.querySelector("#one")
 onePlayerButton.addEventListener('click', (event) => {
 	messageDisplay.textContent = "One Player Mode"
   	console.log("One Player Button was clicked!")
-  	console.log(event.target)
-  	console.log(event.currentTarget)
+  	game.onePlayerInit()
 })
 
 const twoPlayerButton = document.querySelector("#two")
 twoPlayerButton.addEventListener('click', (event) => {
 	messageDisplay.textContent = "Two Player Mode"
-  	console.log(event.target)
-  	console.log(event.currentTarget)
+	game.twoPlayerInit()
 })
 
 
