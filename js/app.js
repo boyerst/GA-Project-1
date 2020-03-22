@@ -16,7 +16,7 @@ class MakeCircle {
 class Player{
 	constructor(num){
 		this.playerNum = num
-		this.score = 0
+		this.score = 0    //have two separate to keep track of two active players?
 	}
 }
 
@@ -47,48 +47,78 @@ const game = {
 	playersArr: [],
 	activePlayer: null,
 
-	 onePlayerInit: function() {
-		// game.startGame()
-		game.randColorArray(9)
-		game.fillCircle()
-		game.selectDisplayedRgb()
-		game.reset()
-	},
-	
-	
-	createPlayer: function() {
-		// //this goes into a player creation function inside the game
-		const newDude = new Player(1)
-		const twoDude = new Player(2)
-		// //these lines are also inside that same func
-		this.playersArr.push(newDude)
-		this.playersArr.push(twoDude)
-		//this function will assign the first item of the playersArr as the active player
-		// const newDude = new Player(1)
-		// const twoDude = new Player(2)
-		console.log(newDude)
-		console.log(twoDude)
-	},
-
-	switchActivePlayer: function() {
-		if(this.activePlayer === this.players[0]){
-			this.activePlayer = this.players[1]
-		} else {
-			this.activePlayer = this.players[0]
-		}
-	},
-	//this is for two player: if active is 1, switch to 2, else if active is 2 switch to one
-	// this.switchActivePlayer()
-	
-
-
 	startGame: function(){
 		let messageDisplay = document.querySelector("#message");
 		messageDisplay.textContent = "Choose Player Mode";
 		game.randColorArray(9)
 		game.fillCircle()
 		game.selectDisplayedRgb()
+		game.reset()
 	},
+
+	
+	onePlayerInit: function() {
+		// game.startGame()
+		game.randColorArray(9)
+		game.fillCircle()
+		game.selectDisplayedRgb()
+		game.reset()
+		//make it so this button instantiates one player
+		const player1 = new Player("one")
+		this.playersArr.push(player1)
+	},
+
+	twoPlayerInit: function() {
+		const player1 = new Player("one")
+		this.playersArr.push(player1)
+		const player2 = new Player("two")
+		this.playersArr.push(player2)
+
+		game.createPlayer()
+		// game.randColorArray(9)
+		// game.fillCircle()
+		// game.selectDisplayedRgb()
+		// game.createPlayer()
+		game.twoPlayerMode()
+		// game.reset()
+	},	
+	
+	createPlayer: function() {
+		// //this goes into a player creation function inside the game
+		const newPlayerOne = new Player(1)
+		const newPlayerTwo = new Player(2)
+		// //these lines are also inside that same func
+		this.playersArr.push(newPlayerOne)
+		this.playersArr.push(newPlayerTwo)
+		//this function will assign the first item of the playersArr as the active player
+		const newDude = new Player(1)
+		const twoDude = new Player(2)
+		console.log(newPlayerOne)
+		console.log(newPlayerTwo)
+		// game.twoPlayerMode()
+	},
+
+	switchActivePlayer: function() {
+		if(this.playersArr.length >= 2){
+			if(this.activePlayer === this.playersArr[0]){
+				this.activePlayer = this.playersArr[1]
+				messageDisplay.textContent = "Player 2"
+			// game.twoPlayerMode()
+
+			} else {
+				this.activePlayer = this.playersArr[0]
+				messageDisplay.textContent = "Player 1"
+				// game.twoPlayerMode()
+			}
+		} else {
+			this.activePlayer = this.playersArr[0]
+		}
+		
+		// game.reset()
+		// game.twoPlayerMode()
+	},
+	//this is for two player: if active is 1, switch to 2, else if active is 2 switch to one
+	// this.switchActivePlayer()
 
 
 	fillCircle: function(color, selected){
@@ -109,7 +139,27 @@ const game = {
 		console.log(randomRgb)	
 	},
 
-
+	twoPlayerMode: function() {
+		let anchorRgb = document.getElementById("displayedRGB").innerText
+		const winningColor = anchorRgb.toLowerCase()
+		if(selectedCircle === winningColor){
+				messageDisplay.textContent = "You have a match! Next player..."
+				this.score = this.score + 1//game.activePlayerScore[i] +=   ???
+				const section = document.querySelector('#scoreBoard')
+				section.innerHTML = `Player Score: ${this.score}`
+				console.log(`${this.score}`)
+					if(this.score < 3){
+						// game.switchActivePlayer()						
+					}else{
+						messageDisplay.textContent = "You won!"
+						}
+			}else{
+				messageDisplay.textContent = "Not a match!"
+				// game.switchActivePlayer()
+		}
+		game.switchActivePlayer()
+		// game.twoPlayerMode()
+	},
 
 	compareSelection: function(selectedCircle) {   
 		let anchorRgb = document.getElementById("displayedRGB").innerText
@@ -223,11 +273,14 @@ let selectedCircle = "you clicked a circle"
 for(let i = 0; i < circlesContainer.length; i ++){
 	circlesContainer[i].addEventListener('click', (event) => {
 		let pickMeAWinner = event.target.style.backgroundColor
+		if(game.playersArr.length > 0){
+			game.twoPlayerMode()
+		}else{
 		game.compareSelection(pickMeAWinner)
-	})
+	
 }
 
-
+})
 //whenever you get your click to log the rgb of the background color
 //maybe set that to a variable and pass that as the argument of the function
 //compareSelection(selectCircleRGBVal)
@@ -257,18 +310,19 @@ const onePlayerButton = document.querySelector("#one")
 onePlayerButton.addEventListener('click', (event) => {
 	messageDisplay.textContent = "One Player Mode: Match 3-in-a-row to Win!"
 	game.onePlayerInit()
-	console.log("One Player Button was clicked!")
-  	console.log(event.target)
-  	console.log(event.currentTarget)
+	// console.log("One Player Button was clicked!")
+  	// console.log(event.target)
+  	// console.log(event.currentTarget)
 })
 
 const twoPlayerButton = document.querySelector("#two")
 twoPlayerButton.addEventListener('click', (event) => {
 	messageDisplay.textContent = "Two Player Mode"
-  	console.log(event.target)
-  	console.log(event.currentTarget)
+	game.twoPlayerInit()
+  	// console.log(event.target)
+  	// console.log(event.currentTarget)
 })
-
+}
 
 
 
