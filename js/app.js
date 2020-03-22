@@ -46,6 +46,14 @@ const game = {
 	multiplayer: false,
 	playersArr: [],
 	activePlayer: null,
+
+	 onePlayerInit: function() {
+		// game.startGame()
+		game.randColorArray(9)
+		game.fillCircle()
+		game.selectDisplayedRgb()
+		game.reset()
+	},
 	
 	
 	createPlayer: function() {
@@ -69,7 +77,7 @@ const game = {
 			this.activePlayer = this.players[0]
 		}
 	},
-
+	//this is for two player: if active is 1, switch to 2, else if active is 2 switch to one
 	// this.switchActivePlayer()
 	
 
@@ -77,6 +85,9 @@ const game = {
 	startGame: function(){
 		let messageDisplay = document.querySelector("#message");
 		messageDisplay.textContent = "Choose Player Mode";
+		game.randColorArray(9)
+		game.fillCircle()
+		game.selectDisplayedRgb()
 	},
 
 
@@ -162,10 +173,10 @@ const game = {
 
 
 game.startGame()
-game.randColorArray(9)
-game.fillCircle()
-game.selectDisplayedRgb()
-game.reset()
+// game.randColorArray(9)
+// game.fillCircle()
+// game.selectDisplayedRgb()
+// game.reset()
 
 
 game.randColorArray //(have to call first w value?)
@@ -245,6 +256,7 @@ resetButton.addEventListener('click', (event) => {
 const onePlayerButton = document.querySelector("#one")
 onePlayerButton.addEventListener('click', (event) => {
 	messageDisplay.textContent = "One Player Mode: Match 3-in-a-row to Win!"
+	game.onePlayerInit()
 	console.log("One Player Button was clicked!")
   	console.log(event.target)
   	console.log(event.currentTarget)
