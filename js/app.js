@@ -91,7 +91,7 @@ const game = {
 			const p2score = document.getElementById("playerTwoScore")				
 			console.log(p2score)													
 			p2score.innerHTML = `Player 2 Score: ${game.playersArr[1].score}`
-		}else{
+		} else {
 			const p1score = document.getElementById("playerOneScore")
 			console.log(p1score)
 			p1score.innerHTML = `Player 1 Score: ${game.playersArr[0].score}`
@@ -104,10 +104,10 @@ const game = {
 		console.log(selectedCircle)
 		const statusMessage = document.getElementById("status")
 		if(selectedCircle === winningColor){
-				statusMessage.textContent = "You have a match!"
-				this.activePlayer.score = this.activePlayer.score + 1
-			}else{
-				statusMessage.textContent = "Not a match!"
+			statusMessage.textContent = "You have a match!"
+			this.activePlayer.score = this.activePlayer.score + 1
+		} else {
+			statusMessage.textContent = "Not a match!"
 		}
 		game.displayScores()
 		game.checkWin()
@@ -117,7 +117,7 @@ const game = {
 	checkWin: function() {
 		if(this.activePlayer.score <3){
 			game.switchActivePlayer()
-		}else{
+		} else {
 			let messageDisplay = document.querySelector("#message");
 			messageDisplay.textContent = "You won!"
 		}
@@ -144,9 +144,7 @@ const game = {
 
 	randColor: function(){
 		let r = Math.floor(Math.random() * 256);
-	
 		let g = Math.floor(Math.random() * 256);
-	
 		let b = Math.floor(Math.random() * 256);
 		return "rgb(" + r + ", " + g + ", " + b + ")";
 	}
@@ -174,8 +172,8 @@ game.selectDisplayedRgb
 
 
 let messageDisplay = document.querySelector("#message");
-const circlesContainer = document.querySelector("#container")
 
+const circlesContainer = document.querySelector("#container")
 const selectedCircle = "you clicked a circle"
 circlesContainer.addEventListener('click', (event) => {
 	let pickMeAWinner = event.target.style.backgroundColor

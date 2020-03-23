@@ -16,13 +16,11 @@
 ・The screen will display:
 	・A 5 x 5 grid of boxes that are filled with randomly generated colors
 	・An rgb() color value in the header
-		・? as well as hex values ?
-・For each round the user must attempt to match a colored box to the displayed value
+		・For each round the user must attempt to match a colored box to the displayed value
 ・The user will use the mouse to select their guess
 ・If the user guesses correctly, all boxes will generate the correct color that was guessed
 ・If the user guesses incorrectly, the selected box will disappear
-	・? and the value of the wrong color selected will appear ? 
-・If either incorrect or correct, the game board will reset for the next player
+	・If either incorrect or correct, the game board will reset for the next player
 ・For each correct guess, the user earns one point
 	・Points will be displayed in the header
 ・The game will reset after each play, and users will make their plays one after the other
