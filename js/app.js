@@ -20,7 +20,6 @@ const game = {
 	numCircles: 9,	
 	selectDisplayedRgb: "",
 	colorsArray: [],
-	playerScore: 0,
 	multiplayer: false,
 	playersArr: [],
 	activePlayer: null,
@@ -41,9 +40,6 @@ const game = {
 	},	
 
 	switchActivePlayer: function() {
-		console.log("SWITCHING ACTIVE PLAYER")
-		console.log(game.playersArr)
-		console.log(game.activePlayer)
 		if(this.playersArr.length >= 2){
 			if(this.activePlayer === this.playersArr[0]){
 				this.activePlayer = this.playersArr[1]
